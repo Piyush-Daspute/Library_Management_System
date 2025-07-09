@@ -1,0 +1,59 @@
+Flask
+Flask-MySQL
+flask_sqlalchemy
+
+
+drop database book_lending_system; 
+CREATE DATABASE book_lending_system;
+USE book_lending_system;
+
+CREATE TABLE books (
+    book_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100),
+    author VARCHAR(100),
+    available BOOLEAN DEFAULT TRUE,
+    book_img varchar(100)
+);
+
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100),
+    password VARCHAR(100),
+    role enum("admin","user"),
+    phone VARCHAR(20)
+);
+
+CREATE TABLE transactions (
+    transaction_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    book_id INT,
+    borrow_date DATE,
+    return_date DATE,
+    status VARCHAR(20),
+    fine FLOAT DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (book_id) REFERENCES books(book_id)
+);
+
+INSERT INTO users (name, email, password, role, phone) VALUES 
+("testuser1","testuser1.gmail.com","12345","admin","8828077850");
+
+SELECT * FROM USERS;
+
+INSERT INTO books (title, author, available, book_img) VALUES
+('Atomic Habits', 'James Clear', FALSE, 'images/atomic_habits.jpg'),
+('The Alchemist', 'Paulo Coelho', FALSE, 'images/the_alchemist.jpg'),
+('To Kill a Mockingbird', 'Harper Lee', FALSE, 'images/to_kill_a_mockingbird.jpg'),
+('1984', 'George Orwell', FALSE, 'images/1984.jpg'),
+('Pride and Prejudice', 'Jane Austen', FALSE, 'images/pride_prejudice.jpg'),
+('The Great Gatsby', 'F. Scott Fitzgerald', FALSE, 'images/great_gatsby.jpg'),
+('Sapiens: A Brief History of Humankind', 'Yuval Noah Harari', FALSE, 'images/sapiens.jpg'),
+('The Catcher in the Rye', 'J.D. Salinger', FALSE, 'images/catcher_rye.jpg'),
+('The Power of Now', 'Eckhart Tolle', FALSE, 'images/power_of_now.jpg'),
+('Rich Dad Poor Dad', 'Robert Kiyosaki', TRUE, 'images/rich_dad_poor_dad.jpg');
+
+
+select * from transactions;	
+
+update books set book_img = 'images/the_alchemist.jpg' where title = 'The Alchemist';

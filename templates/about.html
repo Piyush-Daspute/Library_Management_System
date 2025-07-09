@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-10 col-lg-8">
+            <div class="text-center mb-4">
+                <h1 class="text-primary fw-bold">About Our Library</h1>
+                <p class="lead text-muted">Your gateway to endless knowledge and imagination.</p>
+            </div>
+            <div class="card p-4 shadow-sm border-0">
+                <p>
+                    Our library management system is designed to serve readers and staff with an intuitive, tech-driven approach
+                    to managing books, transactions, and user activities. Whether you're a student, teacher, or lifelong learner,
+                    we aim to make your reading journey smoother and more efficient.
+                </p>
+                <p>
+                    With features like real-time book availability, rental history tracking, automated fine calculation, and admin
+                    book management, we ensure both readers and librarians have a seamless experience.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Head Librarian -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-8 text-center">
+            <h2 class="text-secondary mb-3">Meet the Head Librarian</h2>
+            <div class="card shadow-sm p-4 border-0">
+                <img src="{{ url_for('static', filename='images/librarian.jpg') }}" alt="Head Librarian" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+                <h4 class="fw-semibold">Mrs. Sunita Joshi</h4>
+                <p class="text-muted mb-1">Head Librarian</p>
+                <p class="text-muted">With over 20 years of experience in academic libraries, Mrs. Joshi ensures the highest standard of service, supporting both the readers and the staff.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Staff Section -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-10 text-center">
+            <h2 class="text-secondary mb-4">Our Dedicated Staff</h2>
+            <div class="row g-4">
+                {% set staff_members = [
+                    {"name": "Aniket Patil", "role": "Technical Assistant", "img": "staff1.jpg"},
+                    {"name": "Priya Deshmukh", "role": "Circulation Manager", "img": "staff2.jpg"},
+                    {"name": "Rahul Shinde", "role": "Acquisitions Coordinator", "img": "staff3.jpg"}
+                ] %}
+                {% for staff in staff_members %}
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm p-3">
+                        <img src="{{ url_for('static', filename='images/' + staff.img) }}" alt="{{ staff.name }}" class="rounded mb-3" style="width:100%; height:250px; object-fit:cover;">
+                        <h5>{{ staff.name }}</h5>
+                        <p class="text-muted">{{ staff.role }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Mission Statement -->
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+            <div class="card p-4 shadow-sm border-0 text-center">
+                <h3 class="text-primary mb-3">Our Mission</h3>
+                <p class="lead">
+                    We are committed to creating an inclusive and accessible space for education, discovery, and lifelong learning.
+                    Our team works diligently to provide up-to-date resources and helpful services to foster a culture of reading.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,117 @@
+        /* Custom CSS to complement Bootstrap */
+        body {
+          background-color: #f4f6f9;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .navbar {
+          background-color: #343a40;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+
+      .navbar-brand {
+          color: #ffffff !important;
+          font-weight: bold;
+      }
+
+      .nav-links .nav-link {
+          color: #adb5bd !important;
+          transition: color 0.3s ease;
+      }
+
+      .nav-links .nav-link:hover {
+          color: #ffffff !important;
+      }
+
+      .search-form {
+          max-width: 600px;
+          margin: 20px auto;
+          background-color: white;
+          border-radius: 8px;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
+
+      .book-container {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+          gap: 20px;
+          padding: 20px;
+      }
+
+      .book-card {
+          background-color: white;
+          border-radius: 10px;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+          transition: transform 0.3s ease;
+          overflow: hidden;
+      }
+
+      .book-card:hover {
+          transform: scale(1.03);
+      }
+
+      .book-img {
+          width: 100%;
+          height: 350px;
+          object-fit: cover;
+      }
+
+      .book-details {
+          padding: 15px;
+      }
+
+      .btn-rent {
+          width: 100%;
+          margin-top: 10px;
+      }
+
+      .btn-danger{
+          width: 100%;
+          margin-top: 10px;
+      }
+
+      .status-available {
+          color: #28a745;
+          font-weight: bold;
+      }
+
+      .status-rented {
+          color: #dc3545;
+          font-weight: bold;
+      }
+
+      .nav-item {
+        position: relative;
+    }
+    
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: white;
+        top: 100%;
+        left: 0;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        z-index: 1000;
+    }
+    
+    .dropdown-menu li {
+        list-style: none;
+    }
+    
+    .dropdown-menu a {
+        display: block;
+        padding: 10px 16px;
+        color: #333;
+        text-decoration: none;
+    }
+    
+    .dropdown-menu a:hover {
+        background-color: #f1f1f1;
+    }
+    
+    .nav-item:hover .dropdown-menu {
+        display: block;
+    }
+    

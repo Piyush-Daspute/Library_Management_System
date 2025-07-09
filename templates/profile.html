@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+
+    <style>
+        .profile-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-header h1 {
+            font-size: 2.5rem;
+            color: #4B0082;
+            margin-bottom: 5px;
+        }
+
+        .profile-header h2 {
+            font-size: 1.3rem;
+            color: #555;
+        }
+
+        .profile-info {
+            margin-bottom: 25px;
+            padding: 15px 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .profile-info p {
+            margin: 0 0 10px;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .history-title {
+            font-size: 1.4rem;
+            color: #6a1b9a;
+            margin-bottom: 10px;
+        }
+
+        .book-history {
+            overflow-x: auto;
+        }
+
+        .book-history table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .book-history th,
+        .book-history td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .book-history th {
+            background-color: #eee;
+            color: #444;
+        }
+
+        .book-history td {
+            background-color: #fdfdfd;
+            color: #333;
+        }
+
+        .no-transactions {
+            font-style: italic;
+            color: #999;
+            margin-top: 10px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .profile-container {
+                padding: 20px;
+            }
+
+            .profile-header h1 {
+                font-size: 2rem;
+            }
+
+            .book-history table,
+            .book-history th,
+            .book-history td {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar from user_home -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Library</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{ url_for('profile') }}">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Section -->
+    <div class="profile-container">
+        <div class="profile-header">
+            <h1>{{ user[1] }}</h1>
+            <h2>Profile & Book History</h2>
+        </div>
+
+        <div class="profile-info">
+            <p><strong>Email:</strong> {{ user[2] }}</p>
+            <p><strong>Phone:</strong> {{ user[5] }}</p>
+            <p><strong>Role:</strong> {{ user[4] }}</p>
+        </div>
+
+        <h3 class="history-title">Rented Book History</h3>
+        <div class="book-history">
+            {% if transactions %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Book</th>
+                            <th>Borrowed On</th>
+                            <th>Returned On</th>
+                            <th>Status</th>
+                            <th>Fine</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for t in transactions %}
+                        <tr>
+                            <td>{{ t[2] }}</td>
+                            <td>{{ t[3].strftime('%Y-%m-%d') }}</td>
+                            <td>{{ t[4].strftime('%Y-%m-%d') if t[4] else 'Not Returned' }}</td>
+                            <td>{{ t[5] }}</td>
+                            <td>{{ t[6] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="no-transactions">No transactions yet.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

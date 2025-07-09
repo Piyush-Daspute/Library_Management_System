@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Login</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div id="grad1"></div>
+
+    <div class="login_container">
+        <div class="login_header">
+            <h1>Welcome</h1>
+            <h2>Library Login</h2>
+        </div>
+
+        <form id="loginForm" class="login_form" method="POST" action="/">
+            <input 
+                type="tel" 
+                name="phone" 
+                class="input phone_input" 
+                placeholder="Phone Number" 
+                pattern="[0-9]{10}" 
+                title="Please enter a 10-digit phone number"
+                required
+            >
+            <input 
+                type="password" 
+                name="password" 
+                class="input password_input" 
+                placeholder="Password" 
+                minlength="5"
+                required
+            >
+            <button class="button submit" type="submit">Login</button>
+            <button class="button register_button">
+                <a href="{{ url_for('register') }}">Register</a>
+            </button>
+        </form>
+
+        {% if error %}
+        <p class="error_message">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
